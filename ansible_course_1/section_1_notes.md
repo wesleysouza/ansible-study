@@ -1,34 +1,41 @@
-#Ansible Course
+# Ansible Course
 
-##Introduction
+## Introduction
 
-Criação do lab no VirtualBox
+### Criação do lab no VirtualBox
 
-- Máquina Centos
-osboxes
-osboxes.org
+CentOS Machine (osboxes.org)
+- user: osboxes
+- pwd osboxes.org
 
--Criar clones a partir do template:
-ansible-controller -> 192.168.0.11
-ansible-target1 -> 192.168.0.10
-ansible-target2 -> 192.168.0.12
+Criar clones a partir do template:
+- ansible-controller -> 192.168.0.11
+- ansible-target1 -> 192.168.0.10
+- ansible-target2 -> 192.168.0.12
 
-Executar procedimento em todas as máquinas:
+#### Executar procedimento em todas as máquinas:
 
-###Rename host
+##### Rename host
+```
 sudo vim /etc/hostname
 Rename all hosts
+```
 
-###Modified file hosts
+##### Modified file hosts
+```
 sudo vim /etc/hosts
 Rename -> ip localhost namehost
+```
 
-###Restart
+##### Restart
+```
 shutdown now -r
+```
 
-###Install Ansible in RHEL and CentOS
+##### Install Ansible in RHEL and CentOS
+```
 sudo yum install ansible
-
+```
 
 
 
