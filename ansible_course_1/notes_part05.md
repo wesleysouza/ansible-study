@@ -20,7 +20,7 @@ Ansible playbooks are Ansible's orchestration language. Is in playbooks where we
 
 ### playbook.yml example
 
-```
+```yaml
 -  
   hosts:localhost
   name: Play 1
@@ -53,7 +53,8 @@ Ansible playbooks are Ansible's orchestration language. Is in playbooks where we
 ##Demo - Run Ansible Playbook
 
 Commands:
-```
+
+```yaml
 ansible-playbook playbook.yml
 ansible-playbook --help
 ```
