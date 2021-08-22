@@ -10,7 +10,7 @@ localization -> /etc/ansible/hots
 
 Example: investory file
 
-```
+```txt
 server1.company.com
 server2.company.com
 
@@ -26,7 +26,7 @@ Obs.:
 #### Alias
 
 Example:
-```
+```txt
 web ansible_host=server1.company.com
 ```
 
@@ -40,7 +40,7 @@ web ansible_host=server1.company.com
 
 Example 
 
-```
+```txt
 web ansible_host=server1.company.com ansible_connection - ssh ansible_user=root
 web ansible_host=server2.company.com ansible_connection - winrm ansible_user=admin
 ```
@@ -53,7 +53,7 @@ winrm -> WindowsServer
 
 The best practice is to set up SSH key-based passwordles authentication between the servers.
 
-```
+```txt
 ansible_ssh_pass #Linux
 ansible_password #Windows with winrm
 ```
@@ -70,7 +70,7 @@ Use ping and ssh for test connectivity with target host.
 
 #### Create project
 
-```
+```bash
 mkdir test-project
 cd test-project
 cat > inventory.txt
@@ -78,7 +78,7 @@ cat > inventory.txt
 
 Write in inventory file:
 
-```
+```txt
 target1 ansible_host=ip ansible_ssh_pass=osboxes.org
 target2 ansible_host=ip ansible_ssh_pass=osboxes.org
 ```
@@ -86,7 +86,7 @@ target2 ansible_host=ip ansible_ssh_pass=osboxes.org
 ### Step 3: Check via Ansible command
 
 Ping Test:
-```
+```bash
 ansible target1 -m ping -i inventory.txt
 ```
 
@@ -101,7 +101,7 @@ In Production enviroment using passwords to stablish connectivity between system
 
 ###Inventory 04
 
-```
+```txt
 # Sample Inventory File
 
 # Web Servers
@@ -124,7 +124,7 @@ db1
 ### Inventory 05
 
 
-```
+```txt
 # Sample Inventory File
 
 # Web Servers
@@ -171,7 +171,7 @@ Group the servers together based on this table
 
 Code:
 
-```
+```txt
 sql_db1 ansible_host=sql01.xyz.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
 sql_db2 ansible_host=sql02.xyz.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Lin$Pass
 web_node1 ansible_host=web01.xyz.com ansible_connection=winrm ansible_user=administrator ansible_password=Win$Pass
