@@ -26,7 +26,7 @@ YAML files represent data, in this case, configuraton data.
 
 Resposta
 
-```
+```yaml
 employee:
     name: john
     gender: male
@@ -37,7 +37,7 @@ employee:
 
 We would like to record information about multiple employees. Convert the dictionary employee to an array employees.
 
-```
+```yaml
 employees:
     -
         name: john
