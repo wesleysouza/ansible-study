@@ -14,24 +14,28 @@ Criar clones a partir do template:
 ### Executar procedimento em todas as máquinas:
 
 #### Rename host
-```
+
+```bash
 sudo vim /etc/hostname
 Rename all hosts
 ```
 
 #### Modified file hosts
-```
+
+```bash
 sudo vim /etc/hosts
 Rename -> ip localhost namehost
 ```
 
 #### Restart
-```
+
+```bash
 shutdown now -r
 ```
 
 #### Install Ansible in RHEL and CentOS
-```
+
+```bash
 sudo yum install ansible
 ```
 
