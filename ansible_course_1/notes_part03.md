@@ -93,7 +93,7 @@ ansible target1 -m ping -i inventory.txt
 #### Error in second ping test
 
 Resolve editing /etc/ansible/ansible.cfg
-Coment line: #host_key_checking
+Coment line: #host_key_checking or set as False
 
 In Production enviroment using passwords to stablish connectivity between systems is not recommended.
 
