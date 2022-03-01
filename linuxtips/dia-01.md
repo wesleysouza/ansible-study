@@ -154,3 +154,135 @@ Obtendo informações sobre o ip:
 ```bash
 ansible -i hosts all -m setup -a "filter=ansible_default_ipv4" | more
 ```
+
+## Criando o primeiro playbook
+
+Sempre que fornecessário configuração e instalaçaõ de pacotes crie um playbook.
+
+Crie o arquivo **meu_primeiro_playbook.yml**:
+
+```yml
+---
+- hosts: webservers
+  become: yes
+  remote_user: k8s
+  tasks:
+  - name: Instalando o Nginx
+    apt:
+      name: nginx
+      state: present
+      update_cache: yes
+  
+  - name: Iniciando o Nginx
+    service:
+      name: nginx
+      enabled: yes
+  
+  - name: Iniciando o Nginx
+    service:
+      name: nginx
+      state: started
+```
+
+Executando:
+
+```
+ansible-playbook -i hosts meu_primeiro_playbook.yml
+```
+
+É possíver **definir grupos** no arquivo de inventário, exemplo:
+
+```
+[webservers]
+ansible-node-1
+
+[db]
+ansible-node-2
+```
+
+### Adicionando arquivo personalizado no nginx
+
+Criando o arquivo:
+
+```html
+<html>
+    <head>
+        <title>TESTE</title>
+    </head>
+
+    <body>
+        <h1>TESTE NGINX</h1>
+    </body>
+</html>
+```
+
+Editando o arquivo **meu_primeiro_playbook.yml**:
+
+```yml
+---
+- hosts: webservers
+  become: yes
+  remote_user: k8s
+  tasks:
+  - name: Instalando o Nginx
+    apt:
+      name: nginx
+      state: present
+      update_cache: yes
+  
+  - name: Iniciando o Nginx
+    service:
+      name: nginx
+      enabled: yes
+  
+  - name: Iniciando o Nginx
+    service:
+      name: nginx
+      state: started
+
+  - name: Copiando HTML personalizado
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+```
+
+Execute novamente:
+
+```
+ansible-playbook -i hosts meu_primeiro_playbook.yml
+```
+
+Obs.: Se for alterado o conteúdo do arquivo o ansible envia a cópia novamente.
+
+### Handlers
+
+Handlers são utlizados para tomar alguma ação.
+
+Criando o handler:
+
+```yml
+- name: Copiando nginx.conf
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+  notify: Restartando o Nginx
+
+handlers:
+- name: Restartando o Nginx
+  service:
+    name: nginx
+    state: restarted
+```
+
+Obs.: O campo **notify** é quem chama o **handler**.
+
+### Desigando as máquinas
+
+```yml
+- hosts: all
+  become: yes
+  remote_user: k8s
+  tasks:
+  - name: Desigando clientes
+    shell: shutdown
+```
